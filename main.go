@@ -52,6 +52,7 @@ func main() {
 			return
 		}
 		fmt.Println("avroBinary :", string(avroBinary))
+		fmt.Printf("binary: %#v", avroBinary)
 	} else {
 		log.Println(conversionType, "is not supported yet!!")
 	}
