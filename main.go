@@ -40,11 +40,21 @@ func main() {
 		log.Println("Error loading .env file")
 		return
 	}
-
 	conversionType := os.Getenv("CONVERSION_TYPE")
 
 	if conversionType == "AVRO_TO_JSON" {
+		avroBinary, err := converters.JsonToAvro(jsn, loginEventAvroSchema)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		jsnByt, err := converters.AvroToJson(avroBinary, loginEventAvroSchema)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 
+		fmt.Println("jsnByt:", string(jsnByt))
 	} else if conversionType == "JSON_TO_AVRO" {
 		avroBinary, err := converters.JsonToAvro(jsn, loginEventAvroSchema)
 		if err != nil {

@@ -1,7 +1,6 @@
 package converters
 
 import (
-	"encoding/json"
 	"github.com/linkedin/goavro/v2"
 )
 
@@ -12,13 +11,12 @@ func JsonToAvro(jsn []byte, avroSchema string) ([]byte, error) {
 		return nil, err
 	}
 
-	// Convert JSON to native Go form
-	var m map[string]interface{}
-	err = json.Unmarshal(jsn, &m)
+	// Convert textual Avro data (in Avro JSON format) to native Go form
+	native, _, err := codec.NativeFromTextual(jsn)
 	if err != nil {
 		return nil, err
 	}
 
 	// Convert native Go form to binary Avro data
-	return codec.BinaryFromNative(nil, m)
+	return codec.BinaryFromNative(nil, native)
 }
