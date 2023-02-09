@@ -2,9 +2,9 @@ package converters
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/linkedin/goavro/v2"
 	"strings"
+
+	"github.com/linkedin/goavro/v2"
 )
 
 func OcfFileRead(ocfFileContents string) ([]byte, error) {
@@ -13,7 +13,6 @@ func OcfFileRead(ocfFileContents string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("Records in OCF File")
 
 	var mp []interface{}
 
@@ -22,18 +21,13 @@ func OcfFileRead(ocfFileContents string) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println("record", record)
 		mp = append(mp, record)
 	}
-
-	fmt.Println(mp)
 
 	jsnByt, err := json.Marshal(mp)
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println(string(jsnByt))
 
 	return jsnByt, nil
 }

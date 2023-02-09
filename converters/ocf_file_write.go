@@ -3,7 +3,7 @@ package converters
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
+
 	"github.com/linkedin/goavro/v2"
 )
 
@@ -29,8 +29,6 @@ func OcfFileWrite(avroSchema string, ocfData []byte) (string, error) {
 	if err != nil {
 		return "", err
 	}
-
-	fmt.Println("ocfFileContents", ocfFileContents.String())
 
 	return ocfFileContents.String(), nil
 }
