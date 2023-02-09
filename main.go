@@ -107,8 +107,8 @@ func jsonToAvro() {
 	fmt.Printf("binary: %#v", avroBinary)
 }
 
-func ocfFileRead() {
-	jsn, err := converters.OcfFileRead("")
+func ocfFileRead(ocfFileContents string) {
+	jsn, err := converters.OcfFileRead(ocfFileContents)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -125,4 +125,6 @@ func ocfFileWrite() {
 	}
 
 	fmt.Println(ocfFileContents)
+
+	ocfFileRead(ocfFileContents)
 }
